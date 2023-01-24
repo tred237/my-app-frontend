@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import ClientList from './ClientList'
+import ClientPage from './ClientPage'
 
 function App() {
   const [clients, setClients] = useState([])
@@ -8,9 +8,15 @@ function App() {
     fetch('http://localhost:9292/clients')
     .then((res) => res.json())
     .then(data => {
+      console.log(data)
       setClients(data)  
     })
   },[])
+
+  function handleClientDeleteClick(client){
+    const newClientList = clients.filter(e => e.id !== client.id)
+    setClients(newClientList)
+  }
 
   return (
     <div>
@@ -19,7 +25,7 @@ function App() {
           Training Catalog This is a test
         </p>
       </header>
-      <ClientList clients={clients} />
+      <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} />
     </div>
   );
 }

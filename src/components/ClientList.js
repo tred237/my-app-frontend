@@ -1,20 +1,19 @@
-function ClientList({ clients }) {
+function ClientList({ client, onClientDelete }) {
+    function handleClientDelete() {
+        fetch(`http://localhost:9292/clients/${client.id}`,{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(client)
+        }).then(res => res.json())
+        .then(data => onClientDelete(data))
+    }
+
     return(
-        <div>
-            <form>
-                <label>Input Client Name:
-                    <input type="text" name="client-name"/>
-                </label>
-                <input type="submit" />
-            </form>
-            <ul>
-                {clients.map(e => {
-                    return <li key={e.id}>
-                                {e.name}   <button>Delete</button>
-                           </li>
-                })}
-            </ul>
-        </div>
+        <li>
+            {client.name}    <button onClick={handleClientDelete}>Delete</button>
+        </li>
     )
 }
 
