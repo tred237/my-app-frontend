@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import ClientList from './ClientList'
 
 function App() {
   const [clients, setClients] = useState([])
@@ -18,14 +19,7 @@ function App() {
           Training Catalog This is a test
         </p>
       </header>
-      <div>
-        {
-          clients.map(e => {     
-              console.log(e)
-              return <p>{`${e.name}`}</p>
-          })
-        }
-      </div>
+      <ClientList clients={clients} />
     </div>
   );
 }
