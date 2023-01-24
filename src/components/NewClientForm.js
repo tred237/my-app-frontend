@@ -17,14 +17,17 @@ function NewClientForm({ onNewClientSubmit }) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(newClient)
-        }).then(res => res.json())
+        })
+        .then(res => res.json())
         .then(data => onNewClientSubmit(data))
+
+        setFormData({...formDefault})
     }
 
     return(
         <form onSubmit={handleSubmit}>
             <label>Input Client Name:
-                <input type="text" name="name" onChange={handleFormData}/>
+                <input type="text" name="name" value={formData.name} onChange={handleFormData}/>
             </label>
             <button type="submit">Submit</ button>
         </form>
