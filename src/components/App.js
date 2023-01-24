@@ -13,8 +13,8 @@ function App() {
     })
   },[])
 
-  function handleClientDeleteClick(client){
-    const newClientList = clients.filter(e => e.id !== client.id)
+  function handleClientDeleteClick(clientId){
+    const newClientList = clients.filter(e => e.id !== clientId)
     setClients(newClientList)
   }
 

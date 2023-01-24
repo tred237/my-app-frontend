@@ -7,7 +7,7 @@ function ClientList({ client, onClientDelete }) {
             },
             body: JSON.stringify(client)
         }).then(res => res.json())
-        .then(data => onClientDelete(data))
+        .then(data => onClientDelete(data.id))
     }
 
     return(
