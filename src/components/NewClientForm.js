@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function NewClientForm() {
+function NewClientForm({ onNewClientSubmit }) {
     const formDefault = {name: ''}
     const [formData, setFormData] = useState({...formDefault})
 
@@ -8,12 +8,25 @@ function NewClientForm() {
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
+    function handleSubmit(e){
+        e.preventDefault()
+        const newClient = {...formData}
+        fetch('http://localhost:9292/clients',{
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newClient)
+        }).then(res => res.json())
+        .then(data => onNewClientSubmit(data))
+    }
+
     return(
-        <form >
+        <form onSubmit={handleSubmit}>
             <label>Input Client Name:
                 <input type="text" name="name" onChange={handleFormData}/>
             </label>
-            <input type="submit" />
+            <button type="submit">Submit</ button>
         </form>
     )
 }

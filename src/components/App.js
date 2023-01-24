@@ -18,6 +18,10 @@ function App() {
     setClients(newClientList)
   }
 
+  function handleNewClientSubmit(client){
+    setClients([...clients, client])
+  }
+
   return (
     <div>
       <header>
@@ -25,7 +29,7 @@ function App() {
           Training Catalog This is a test
         </p>
       </header>
-      <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} />
+      <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} />
     </div>
   );
 }
