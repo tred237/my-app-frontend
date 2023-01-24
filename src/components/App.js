@@ -3,7 +3,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Training Catalog
+          Training Catalog This is a test
         </p>
       </header>
     </div>
