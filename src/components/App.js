@@ -22,6 +22,15 @@ function App() {
     setClients([...clients, client])
   }
 
+  function handleClientNameUpdate(clientId, clientName){
+    const newClientList = clients.map(e => {
+      if(e.id === clientId) e.name = clientName
+      return e
+    })
+
+    setClients(newClientList)
+  }
+
   return (
     <div>
       <header>
@@ -29,7 +38,7 @@ function App() {
           Training Catalog This is a test
         </p>
       </header>
-      <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} />
+      <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
     </div>
   );
 }
