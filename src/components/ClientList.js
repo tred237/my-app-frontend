@@ -1,10 +1,3 @@
-// create a state variable that is used to toggle an input field
-// create an edit button that triggers a change in state for the toggle
-// write a conditional that uses the state variable 
-// updating the db
-// if name state != client.name perform a patch request to update the database
-// then update client state
-
 import { useState } from 'react'
 
 function ClientList({ client, onClientDelete, onClientNameUpdate }) {
