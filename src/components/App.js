@@ -40,8 +40,6 @@ function App() {
     setClients(newClientList)
   }
 
-  console.log(clients)
-
   return (
     <div>
       <header>
