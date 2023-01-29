@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
+import Routine from './Routine'
 
 function RoutineList({ clients, onRoutinesChange }){
     const [routines, setRoutines] = useState([])
@@ -13,7 +14,7 @@ function RoutineList({ clients, onRoutinesChange }){
 
     return(
         <ul>
-            {routines.map(e => console.log(e))}
+            {routines.map(e => <Routine key={e.id} routine={e}/>)}
         </ul>
     )
 }
