@@ -1,4 +1,6 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
+import { Route } from 'react-router-dom'
+
 import ClientPage from './ClientPage'
 
 function App() {
@@ -38,7 +40,9 @@ function App() {
           Training Catalog This is a test
         </p>
       </header>
-      <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
+      <Route exact path="/">
+        <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
+      </Route>
     </div>
   );
 }
