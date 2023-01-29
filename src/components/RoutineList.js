@@ -4,7 +4,7 @@ import { useParams, useHistory } from "react-router-dom"
 
 import Routine from './Routine'
 
-function RoutineList({ clients, onRoutineDelete }){
+function RoutineList({ onRoutineDelete }){
     const [routines, setRoutines] = useState([])
     const { clientId } = useParams()
     const history = useHistory()

@@ -43,9 +43,7 @@ function App() {
   return (
     <div>
       <header>
-        <p>
-          Training Catalog This is a test
-        </p>
+        <p>Training Catalog</p>
       </header>
       <Switch>
         <Route exact path="/">

@@ -1,4 +1,11 @@
+import { useState } from 'react'
+
+import RoutineSet from "./RoutineSet"
+import RoutineEdit from './RoutineEdit'
+
 function Routine({ routine, onRoutineDelete, onRoutineDeleteState }){
+    const [edit, setEdit] = useState(false)
+
     function handleRoutineDelete(){
         fetch(`http://localhost:9292/routines/${routine.id}`,{
             method: 'DELETE',
@@ -16,15 +23,9 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState }){
 
     return(
         <li>
-            <p>Day: {routine.day}</p>
-            <p>Exercise: {routine.exercise}</p>
-            <p>Type: {routine.exercise_type}</p>
-            <p>Sets: {routine.sets}</p>
-            <p>Reps: {routine.reps}</p>
-            <p>Distance (Miles): {routine.distance_in_miles}</p>
-            <p>Length of Time (Minutes): {routine.length_of_time_minutes}</p>
+            {edit ? <RoutineEdit /> : <RoutineSet routine={routine} />}
             <button onClick={handleRoutineDelete}>Delete</button>
-            <button>Edit</button>
+            <button onClick={() => setEdit(!edit)}>{edit ? "Save" : "Edit"}</button>
         </li>
     )
 }
