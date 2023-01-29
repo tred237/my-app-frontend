@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import ClientPage from './ClientPage'
+import RoutineList from './RoutineList'
 
 function App() {
   const [clients, setClients] = useState([])
@@ -9,10 +10,7 @@ function App() {
   useEffect(() => {
     fetch('http://localhost:9292/clients')
     .then((res) => res.json())
-    .then(data => {
-      console.log(data)
-      setClients(data)  
-    })
+    .then(data => setClients(data))
   },[])
 
   function handleClientDeleteClick(clientId){
@@ -40,9 +38,14 @@ function App() {
           Training Catalog This is a test
         </p>
       </header>
-      <Route exact path="/">
-        <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
-      </Route>
+      <Switch>
+        <Route exact path="/">
+          <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
+        </Route>
+        <Route exact path="/:clientId">
+          <RoutineList clients={clients} />
+        </Route>
+      </Switch>
     </div>
   );
 }
