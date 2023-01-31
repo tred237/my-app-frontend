@@ -8,25 +8,40 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState }){
     const [routineData, setRoutineData] = useState({
                                                     day: routine.day,
                                                     exercise: routine.exercise,
-                                                    exerciseType: routine.exercise_type,
-                                                    sets: handleNullInputs(routine.sets),
-                                                    reps: handleNullInputs(routine.reps),
-                                                    distance: handleNullInputs(routine.distance_miles),
-                                                    time: handleNullInputs(routine.length_of_time_minutes)
+                                                    exercise_type: routine.exercise_type,
+                                                    sets: routine.sets,
+                                                    reps: routine.reps,
+                                                    distance_miles: routine.distance_miles,
+                                                    length_of_time_minutes: routine.length_of_time_minutes
                                                     })
 
-    function handleNullInputs(data){
-        return data === null ? 0 : data
-     }
-
     function handleRoutineChange(e){
-        console.log(e.target.name)
-        console.log(e.target.value)
         setRoutineData({...routineData, [e.target.name]:e.target.value})
     }
 
     function handleRoutineEditSubmit(e){
         e.preventDefault()
+
+        if (edit) {
+            const edittedValues = {}
+
+            for (const key in routineData){
+                if(routine[key] !== routineData[key]) edittedValues[key] = routineData[key]
+            }
+
+            if (Object.keys(edittedValues).length !== 0) {
+                fetch(`http://localhost:9292/routines/${routine.id}`,{
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(edittedValues)
+                })
+                .then(res => res.json())
+                .then((data) => console.log(data, routine.client_id))
+            }
+        }
+
         setEdit(!edit)
     }
 
