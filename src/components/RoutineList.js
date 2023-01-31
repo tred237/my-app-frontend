@@ -21,7 +21,6 @@ function RoutineList({ onRoutineDelete, onRoutineUpdate }){
     }
 
     function handleRoutineUpdateState(routineUpdates){
-        console.log(routineUpdates)
         const newRoutineList = routines.map(e => {
             if(e.id == routineUpdates.id){
                 for(const key in routineUpdates){
@@ -34,7 +33,6 @@ function RoutineList({ onRoutineDelete, onRoutineUpdate }){
         setRoutines(newRoutineList)
     }
 
-    console.log(routines)
     return(
         <React.Fragment>
             <button onClick={() => history.push("/")}>Go Home</button>

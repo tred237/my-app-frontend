@@ -16,11 +16,10 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState, onRoutineUpda
                                                     })
 
     function handleNulls(data){
-        return data === null ? 0.0 : data
+        return data === null ? '' : data
     }                                                
 
     function handleRoutineChange(e){
-        console.log(e.target.name)
         setRoutineData({...routineData, [e.target.name]:e.target.value})
     }
 
@@ -31,7 +30,7 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState, onRoutineUpda
             const edittedValues = {}
 
             for (const key in routineData){
-                if(routine[key] !== routineData[key]) edittedValues[key] = routineData[key]
+                if(routine[key] !== routineData[key] && routineData[key] !== '') edittedValues[key] = routineData[key]
             }
 
             if (Object.keys(edittedValues).length !== 0) {
@@ -73,8 +72,8 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState, onRoutineUpda
             <form onSubmit={handleRoutineEditSubmit}>
                 {edit ? <RoutineEdit routineData={routineData} onRoutineChange={handleRoutineChange} /> : <RoutineSet routine={routine} />}
                 <button onClick={handleRoutineDelete}>Delete</button>
-                {/* <button onClick={handleRoutineEdit}>{edit ? "Save" : "Edit"}</button> */}
                 <button type="submit">{edit ? "Save" : "Edit"}</button>
+                {edit ? <button onClick={() => setEdit(!edit)}>Cancel</button> : null}
             </form>
         </li>
     )
