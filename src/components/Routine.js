@@ -71,9 +71,9 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState, onRoutineUpda
         <li>
             <form onSubmit={handleRoutineEditSubmit}>
                 {edit ? <RoutineEdit routineData={routineData} onRoutineChange={handleRoutineChange} /> : <RoutineSet routine={routine} />}
-                <button onClick={handleRoutineDelete}>Delete</button>
                 <button type="submit">{edit ? "Save" : "Edit"}</button>
                 {edit ? <button onClick={() => setEdit(!edit)}>Cancel</button> : null}
+                {edit ? <button onClick={handleRoutineDelete}>Delete</button> : null}
             </form>
         </li>
     )
