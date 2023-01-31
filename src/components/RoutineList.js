@@ -25,8 +25,7 @@ function RoutineList({ onRoutineDelete, onRoutineUpdate }){
         const newRoutineList = routines.map(e => {
             if(e.id == routineUpdates.id){
                 for(const key in routineUpdates){
-                    console.log(routines[key])
-                    routines[key] = routineUpdates[key]
+                    e[key] = routineUpdates[key]
                 }
             }
             return e

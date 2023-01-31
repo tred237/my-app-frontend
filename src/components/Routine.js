@@ -9,13 +9,18 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState, onRoutineUpda
                                                     day: routine.day,
                                                     exercise: routine.exercise,
                                                     exercise_type: routine.exercise_type,
-                                                    sets: routine.sets,
-                                                    reps: routine.reps,
-                                                    distance_miles: routine.distance_miles,
-                                                    length_of_time_minutes: routine.length_of_time_minutes
+                                                    sets: handleNulls(routine.sets),
+                                                    reps: handleNulls(routine.reps),
+                                                    distance_miles: handleNulls(routine.distance_miles),
+                                                    length_of_time_minutes: handleNulls(routine.length_of_time_minutes)
                                                     })
 
+    function handleNulls(data){
+        return data === null ? 0 : data
+    }                                                
+
     function handleRoutineChange(e){
+        console.log(e.target.name)
         setRoutineData({...routineData, [e.target.name]:e.target.value})
     }
 
