@@ -20,10 +20,10 @@ function RoutineEdit({ routineData, onRoutineChange }) {
                 <input type="text" name="reps" value={routineData.reps} onChange={onRoutineChange}/>
             </label>
             <label>Distance (Miles): 
-                <input type="text" name="distance_miles" value={routineData.distance} onChange={onRoutineChange}/>
+                <input type="text" name="distance_miles" value={routineData.distance_miles} onChange={onRoutineChange}/>
             </label>
             <label>Length of Time (Minutes): 
-            <input type="text" name="length_of_time_minutes" value={routineData.time} onChange={onRoutineChange}/>
+            <input type="text" name="length_of_time_minutes" value={routineData.length_of_time_minutes} onChange={onRoutineChange}/>
             </label>
         </React.Fragment>
     )

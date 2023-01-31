@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import RoutineSet from "./RoutineSet"
 import RoutineEdit from './RoutineEdit'
 
-function Routine({ routine, onRoutineDelete, onRoutineDeleteState }){
+function Routine({ routine, onRoutineDelete, onRoutineDeleteState, onRoutineUpdate, onRoutineUpdateState }){
     const [edit, setEdit] = useState(false)
     const [routineData, setRoutineData] = useState({
                                                     day: routine.day,
@@ -38,7 +38,10 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState }){
                     body: JSON.stringify(edittedValues)
                 })
                 .then(res => res.json())
-                .then((data) => console.log(data, routine.client_id))
+                .then((data) => {
+                    onRoutineUpdate(data, routine.client_id)
+                    onRoutineUpdateState(data)
+                })
             }
         }
 

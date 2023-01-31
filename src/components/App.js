@@ -40,6 +40,25 @@ function App() {
     setClients(newClientList)
   }
 
+  function handleRoutineUpdate(routineUpdates, clientId) {
+    const newClientList = clients.map(e => {
+      if(e.id == clientId){
+        e.routines.map(r => {
+          if(r.id == routineUpdates.id){
+            for(const key in routineUpdates){
+              if(key !== 'id'){
+                r[key] = routineUpdates[key]
+              }
+            }
+          }
+        })
+      }
+      return e
+    })
+
+    setClients(newClientList)
+  }
+
   return (
     <div>
       <header>
@@ -50,7 +69,7 @@ function App() {
           <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
         </Route>
         <Route exact path="/:clientId">
-          <RoutineList clients={clients} onRoutineDelete={handleRoutineDeleteClick} />
+          <RoutineList clients={clients} onRoutineDelete={handleRoutineDeleteClick} onRoutineUpdate={handleRoutineUpdate} />
         </Route>
       </Switch>
     </div>
