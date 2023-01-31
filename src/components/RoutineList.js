@@ -10,7 +10,7 @@ function RoutineList({ onRoutineDelete, onRoutineUpdate }){
     const history = useHistory()
 
     useEffect(() => {
-        fetch(`http://localhost:9292/routines/${clientId}`)
+        fetch(`http://localhost:9292/clients/${clientId}/routines`)
         .then(res => res.json())
         .then(data => setRoutines(data))
     },[clientId])

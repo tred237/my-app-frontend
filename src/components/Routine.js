@@ -43,6 +43,7 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState, onRoutineUpda
                 })
                 .then(res => res.json())
                 .then((data) => {
+                    console.log(data)
                     onRoutineUpdate(data, routine.client_id)
                     onRoutineUpdateState(data)
                 })

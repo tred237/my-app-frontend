@@ -68,7 +68,7 @@ function App() {
         <Route exact path="/">
           <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
         </Route>
-        <Route exact path="/:clientId">
+        <Route exact path="/clients/:clientId/routines">
           <RoutineList clients={clients} onRoutineDelete={handleRoutineDeleteClick} onRoutineUpdate={handleRoutineUpdate} />
         </Route>
       </Switch>
