@@ -16,7 +16,7 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState, onRoutineUpda
                                                     })
 
     function handleNulls(data){
-        return data === null ? 0 : data
+        return data === null ? 0.0 : data
     }                                                
 
     function handleRoutineChange(e){

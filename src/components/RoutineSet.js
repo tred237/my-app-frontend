@@ -8,7 +8,7 @@ function RoutineSet({ routine }){
             <p>Type: {routine.exercise_type}</p>
             <p>Sets: {routine.sets}</p>
             <p>Reps: {routine.reps}</p>
-            <p>Distance (Miles): {routine.distance_in_miles}</p>
+            <p>Distance (Miles): {routine.distance_miles}</p>
             <p>Length of Time (Minutes): {routine.length_of_time_minutes}</p>
         </React.Fragment>
     )

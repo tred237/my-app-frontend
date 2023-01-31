@@ -34,6 +34,7 @@ function RoutineList({ onRoutineDelete, onRoutineUpdate }){
         setRoutines(newRoutineList)
     }
 
+    console.log(routines)
     return(
         <React.Fragment>
             <button onClick={() => history.push("/")}>Go Home</button>
