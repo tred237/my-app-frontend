@@ -27,7 +27,8 @@ function ClientList({ client, onClientDelete, onClientNameUpdate }) {
                 body: JSON.stringify({name: name})
             })
             .then(res => res.json())
-            .then(() => {onClientNameUpdate(client.id, name)})
+            .then((success) => { console.log(success)
+                onClientNameUpdate(client.id, name)})
         }
 
         setEdit(!edit)

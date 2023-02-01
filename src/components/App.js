@@ -13,6 +13,8 @@ function App() {
     .then(data => setClients(data))
   },[])
 
+  console.log(clients)
+
   function handleClientDeleteClick(clientId){
     const newClientList = clients.filter(e => e.id !== clientId)
     setClients(newClientList)
@@ -31,34 +33,6 @@ function App() {
     setClients(newClientList)
   }
 
-  function handleRoutineDeleteClick(routineId, clientId){
-    const newClientList = clients.map(e => {
-      if(e.id === clientId) e.routines = e.routines.filter(r => r.id !== routineId)
-      return e
-    })
-
-    setClients(newClientList)
-  }
-
-  function handleRoutineUpdate(routineUpdates, clientId) {
-    const newClientList = clients.map(e => {
-      if(e.id == clientId){
-        e.routines.map(r => {
-          if(r.id == routineUpdates.id){
-            for(const key in routineUpdates){
-              if(key !== 'id'){
-                r[key] = routineUpdates[key]
-              }
-            }
-          }
-        })
-      }
-      return e
-    })
-
-    setClients(newClientList)
-  }
-
   return (
     <div>
       <header>
@@ -69,7 +43,7 @@ function App() {
           <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
         </Route>
         <Route exact path="/clients/:clientId/routines">
-          <RoutineList clients={clients} onRoutineDelete={handleRoutineDeleteClick} onRoutineUpdate={handleRoutineUpdate} />
+          <RoutineList />
         </Route>
       </Switch>
     </div>

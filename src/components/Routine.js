@@ -3,7 +3,7 @@ import { useState } from 'react'
 import RoutineSet from "./RoutineSet"
 import RoutineEdit from './RoutineEdit'
 
-function Routine({ routine, onRoutineDelete, onRoutineDeleteState, onRoutineUpdate, onRoutineUpdateState }){
+function Routine({ routine, onRoutineDelete, onRoutineUpdate }){
     const [edit, setEdit] = useState(false)
     const [routineData, setRoutineData] = useState({
                                                     day: routine.day,
@@ -42,11 +42,7 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState, onRoutineUpda
                     body: JSON.stringify(edittedValues)
                 })
                 .then(res => res.json())
-                .then((data) => {
-                    console.log(data)
-                    onRoutineUpdate(data, routine.client_id)
-                    onRoutineUpdateState(data)
-                })
+                .then(data => onRoutineUpdate(data))
             }
         }
 
@@ -62,10 +58,7 @@ function Routine({ routine, onRoutineDelete, onRoutineDeleteState, onRoutineUpda
             body: JSON.stringify(routine)
         })
         .then(res => res.json())
-        .then(data => {
-            onRoutineDelete(data.id, data.client_id)
-            onRoutineDeleteState(data.id)
-        })
+        .then(data => onRoutineDelete(data.id))
     }
 
     return(

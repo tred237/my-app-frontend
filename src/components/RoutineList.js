@@ -4,7 +4,7 @@ import { useParams, useHistory } from "react-router-dom"
 
 import Routine from './Routine'
 
-function RoutineList({ onRoutineDelete, onRoutineUpdate }){
+function RoutineList(){
     const [routines, setRoutines] = useState([])
     const { clientId } = useParams()
     const history = useHistory()
@@ -15,12 +15,12 @@ function RoutineList({ onRoutineDelete, onRoutineUpdate }){
         .then(data => setRoutines(data))
     },[clientId])
 
-    function handleRoutineDeleteState(routineId){
+    function handleRoutineDelete(routineId){
         const newRoutineList = routines.filter(e => e.id !== routineId)
         setRoutines(newRoutineList)
     }
 
-    function handleRoutineUpdateState(routineUpdates){
+    function handleRoutineUpdate(routineUpdates){
         const newRoutineList = routines.map(e => {
             if(e.id == routineUpdates.id){
                 for(const key in routineUpdates){
@@ -39,10 +39,8 @@ function RoutineList({ onRoutineDelete, onRoutineUpdate }){
             <ul>
                 {routines.map(e => <Routine key={e.id} 
                                             routine={e} 
-                                            onRoutineDelete={onRoutineDelete} 
-                                            onRoutineDeleteState={handleRoutineDeleteState} 
-                                            onRoutineUpdate={onRoutineUpdate} 
-                                            onRoutineUpdateState={handleRoutineUpdateState} />)}
+                                            onRoutineDelete={handleRoutineDelete} 
+                                            onRoutineUpdate={handleRoutineUpdate} />)}
             </ul>
         </React.Fragment>
     )

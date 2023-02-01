@@ -27,7 +27,7 @@ function NewClientForm({ onNewClientSubmit }) {
     return(
         <form onSubmit={handleSubmit}>
             <label>Input Client Name:
-                <input type="text" name="name" value={formData.name} onChange={handleFormData}/>
+                <input type="text" name="name" value={formData.name} onChange={handleFormData} required/>
             </label>
             <button type="submit">Submit</ button>
         </form>
