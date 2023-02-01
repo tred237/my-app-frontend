@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 function Client({ client, onClientDelete, onClientNameUpdate }) {
     const [edit, setEdit] = useState(false)
-    const [name, setName] = useState(client.name)
+    const [clientName, setClientName] = useState(client.name)
     const history = useHistory()
 
     function handleClientDelete() {
@@ -20,16 +20,16 @@ function Client({ client, onClientDelete, onClientNameUpdate }) {
     function handleClientEditSubmit(e){
         e.preventDefault()
 
-        if(name !== client.name){
+        if(clientName !== client.name){
             fetch(`http://localhost:9292/clients/${client.id}`,{
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({name: name})
+                body: JSON.stringify({name: clientName})
             })
             .then(res => res.json())
-            .then(() => onClientNameUpdate(client.id, name))
+            .then(() => onClientNameUpdate(client.id, clientName))
         }
 
         setEdit(!edit)
@@ -38,7 +38,7 @@ function Client({ client, onClientDelete, onClientNameUpdate }) {
     return(
         <li>
             <form onSubmit={handleClientEditSubmit}>
-                {edit ? <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}/> : name}
+                {edit ? <input type="text" name="name" value={clientName} onChange={(e) => setClientName(e.target.value)} required/> : client.name}
                 {!edit ? <button onClick={() => history.push(`/clients/${client.id}/routines`)}>Routine</button> : null}
                 <button type="submit">{edit ? "Save" : "Edit"}</button>
                 {edit ? <button onClick={() => setEdit(!edit)}>Cancel</button> : null}
