@@ -34,10 +34,14 @@ function RoutineList(){
         setRoutines(newRoutineList)
     }
 
+    function handleRoutineCreate(newRoutine){
+        setRoutines([...routines, newRoutine])
+    }
+
     return(
         <React.Fragment>
             <button onClick={() => history.push("/")}>Go Home</button>
-            <NewRoutineForm clientId={clientId} />
+            <NewRoutineForm clientId={clientId} onRoutineCreate={handleRoutineCreate} />
             <ul>
                 {routines.map(e => <Routine key={e.id} 
                                             routine={e}

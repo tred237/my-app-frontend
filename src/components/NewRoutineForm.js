@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function NewRoutineForm({ clientId }){
+function NewRoutineForm({ clientId, onRoutineCreate }){
     const formDefault = {
         day: '',
         exercise: '',
@@ -34,7 +34,9 @@ function NewRoutineForm({ clientId }){
             body: JSON.stringify(formDataCopy)
         })
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => onRoutineCreate(data))
+
+        setFormData({...formDefault})
     }
 
     return(
