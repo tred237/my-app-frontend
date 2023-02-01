@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import ClientPage from './ClientPage'
+import ClientList from './ClientList'
 import RoutineList from './RoutineList'
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
       </header>
       <Switch>
         <Route exact path="/">
-          <ClientPage clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
+          <ClientList clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
         </Route>
         <Route exact path="/clients/:clientId/routines">
           <RoutineList />
