@@ -51,7 +51,7 @@ function Routine({ routine, clientId, onRoutineDelete, onRoutineUpdate }){
     }
 
     function handleRoutineDelete(){
-        fetch(`http://localhost:9292/routines/${routine.id}`,{
+        fetch(`http://localhost:9292/clients/${clientId}/routines/${routine.id}`,{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

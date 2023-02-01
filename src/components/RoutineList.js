@@ -21,8 +21,6 @@ function RoutineList(){
     }
 
     function handleRoutineUpdate(routineUpdates, routineId){
-        console.log(routineUpdates)
-        console.log(routineId)
         const newRoutineList = routines.map(e => {
             if(e.id == routineId){
                 for(const key in routineUpdates){

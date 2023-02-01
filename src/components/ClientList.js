@@ -35,7 +35,7 @@ function ClientList({ client, onClientDelete, onClientNameUpdate }) {
 
     return(
         <li>
-            {edit ? <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} /> : name}
+            {edit ? <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}/> : name}
             {!edit ? <button onClick={() => history.push(`/clients/${client.id}/routines`)}>Routine</button> : null}
             <button onClick={handleEditClick}>{edit ? "Save" : "Edit"}</button>
             {edit ? <button onClick={() => handleEditClick(!edit)}>Cancel</button> : null}
