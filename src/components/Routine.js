@@ -3,7 +3,7 @@ import { useState } from 'react'
 import RoutineSet from "./RoutineSet"
 import RoutineEdit from './RoutineEdit'
 
-function Routine({ routine, onRoutineDelete, onRoutineUpdate }){
+function Routine({ routine, clientId, onRoutineDelete, onRoutineUpdate }){
     const [edit, setEdit] = useState(false)
     const [routineData, setRoutineData] = useState({
                                                     day: routine.day,
@@ -27,22 +27,23 @@ function Routine({ routine, onRoutineDelete, onRoutineUpdate }){
         e.preventDefault()
 
         if (edit) {
-            const edittedValues = {}
+            const editedValues = {}
 
             for (const key in routineData){
-                if(routine[key] !== routineData[key] && routineData[key] !== '') edittedValues[key] = routineData[key]
+                const nullifiedData = routineData[key] === '' ? null : routineData[key]
+                if(routine[key] !== nullifiedData) editedValues[key] = nullifiedData
             }
 
-            if (Object.keys(edittedValues).length !== 0) {
-                fetch(`http://localhost:9292/routines/${routine.id}`,{
+            if (Object.keys(editedValues).length !== 0) {
+                fetch(`http://localhost:9292/clients/${clientId}/routines/${routine.id}`,{
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(edittedValues)
+                    body: JSON.stringify(editedValues)
                 })
                 .then(res => res.json())
-                .then(data => onRoutineUpdate(data))
+                .then(() =>  onRoutineUpdate(editedValues, routine.id))
             }
         }
 

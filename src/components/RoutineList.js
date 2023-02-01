@@ -20,9 +20,11 @@ function RoutineList(){
         setRoutines(newRoutineList)
     }
 
-    function handleRoutineUpdate(routineUpdates){
+    function handleRoutineUpdate(routineUpdates, routineId){
+        console.log(routineUpdates)
+        console.log(routineId)
         const newRoutineList = routines.map(e => {
-            if(e.id == routineUpdates.id){
+            if(e.id == routineId){
                 for(const key in routineUpdates){
                     e[key] = routineUpdates[key]
                 }
@@ -38,7 +40,8 @@ function RoutineList(){
             <button onClick={() => history.push("/")}>Go Home</button>
             <ul>
                 {routines.map(e => <Routine key={e.id} 
-                                            routine={e} 
+                                            routine={e}
+                                            clientId={clientId}
                                             onRoutineDelete={handleRoutineDelete} 
                                             onRoutineUpdate={handleRoutineUpdate} />)}
             </ul>
