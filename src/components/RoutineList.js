@@ -7,6 +7,7 @@ import Routine from './Routine'
 
 function RoutineList(){
     const [routines, setRoutines] = useState([])
+    const [showForm, setShowForm] = useState(false)
     const { clientId } = useParams()
     const history = useHistory()
 
@@ -36,12 +37,18 @@ function RoutineList(){
 
     function handleRoutineCreate(newRoutine){
         setRoutines([...routines, newRoutine])
+        setShowForm(!showForm)
+    }
+
+    function handleShowFormState(e){
+        e.preventDefault()
+        setShowForm(!showForm)
     }
 
     return(
         <React.Fragment>
             <button onClick={() => history.push("/")}>Go Home</button>
-            <NewRoutineForm clientId={clientId} onRoutineCreate={handleRoutineCreate} />
+            {showForm ? <NewRoutineForm clientId={clientId} onRoutineCreate={handleRoutineCreate} handleShowFormState={handleShowFormState} /> : <button onClick={() => setShowForm(!showForm)}>Add Routine</button>}
             <ul>
                 {routines.map(e => <Routine key={e.id} 
                                             routine={e}

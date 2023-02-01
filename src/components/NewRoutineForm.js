@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function NewRoutineForm({ clientId, onRoutineCreate }){
+function NewRoutineForm({ clientId, onRoutineCreate, handleShowFormState }){
     const formDefault = {
         day: '',
         exercise: '',
@@ -63,6 +63,7 @@ function NewRoutineForm({ clientId, onRoutineCreate }){
                 <input type="text" name="length_of_time_minutes" value={formData.length_of_time_minutes} onChange={handleFormDataChange} />
             </label>
             <button type="submit">Submit</button>
+            <button onClick={handleShowFormState}>Cancel</button>
         </form>
     )
 }
