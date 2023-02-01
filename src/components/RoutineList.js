@@ -37,7 +37,7 @@ function RoutineList(){
     return(
         <React.Fragment>
             <button onClick={() => history.push("/")}>Go Home</button>
-            <NewRoutineForm />
+            <NewRoutineForm clientId={clientId} />
             <ul>
                 {routines.map(e => <Routine key={e.id} 
                                             routine={e}

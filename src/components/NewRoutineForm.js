@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function NewRoutineForm(){
+function NewRoutineForm({ clientId }){
     const formDefault = {
         day: '',
         exercise: '',
@@ -17,8 +17,28 @@ function NewRoutineForm(){
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
+    function handleNewRoutineSubmit(e){
+        e.preventDefault()
+        const formDataCopy = {...formData}
+        
+        for (const key in formDataCopy){
+            const keysToChange = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
+            if (keysToChange.includes(key) && formDataCopy[key] === '') formDataCopy[key] = null
+        }
+
+        fetch(`http://localhost:9292/clients/${clientId}/routines`,{
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formDataCopy)
+        })
+        .then(resp => resp.json())
+        .then(data => console.log(data))
+    }
+
     return(
-        <form>
+        <form onSubmit={handleNewRoutineSubmit}>
             <label>Day of Week:
                 <input type="text" name="day" value={formData.day} onChange={handleFormDataChange} />
             </label>
