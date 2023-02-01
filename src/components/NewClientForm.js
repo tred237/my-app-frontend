@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function NewClientForm({ onNewClientSubmit }) {
+function NewClientForm({ onNewClientSubmit, handleShowFormState }) {
     const formDefault = {name: ''}
     const [formData, setFormData] = useState({...formDefault})
 
@@ -30,6 +30,7 @@ function NewClientForm({ onNewClientSubmit }) {
                 <input type="text" name="name" value={formData.name} onChange={handleFormData} required/>
             </label>
             <button type="submit">Submit</ button>
+            <button onClick={handleShowFormState}>Cancel</button>
         </form>
     )
 }
