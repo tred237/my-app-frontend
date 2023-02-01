@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, useHistory } from "react-router-dom"
 
+import NewRoutineForm from './NewRoutineForm'
 import Routine from './Routine'
 
 function RoutineList(){
@@ -36,6 +37,7 @@ function RoutineList(){
     return(
         <React.Fragment>
             <button onClick={() => history.push("/")}>Go Home</button>
+            <NewRoutineForm />
             <ul>
                 {routines.map(e => <Routine key={e.id} 
                                             routine={e}

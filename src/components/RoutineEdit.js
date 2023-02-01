@@ -4,7 +4,7 @@ function RoutineEdit({ routineData, onRoutineChange }) {
     
     return(
         <React.Fragment>
-            <label>Day: 
+            <label>Day of Week: 
                 <input type="text" name="day" value={routineData.day} onChange={onRoutineChange} required/>
             </label>
             <label>Exercise: 
