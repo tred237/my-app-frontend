@@ -11,7 +11,7 @@ function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineU
                                                     reps: handleNulls(routine.reps),
                                                     distance_miles: handleNulls(routine.distance_miles),
                                                     length_of_time_minutes: handleNulls(routine.length_of_time_minutes)
-                                                    })
+                                                    })                                          
 
     function handleNulls(data){
         return data === null ? '' : data
@@ -19,7 +19,7 @@ function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineU
 
     function handleRoutineChange(e){
         const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
-        
+
         if(numberFields.includes(e.target.name) && !isNaN(Number(e.target.value))) {
             setRoutineData({...routineData, [e.target.name]:e.target.value})
         } else if (!numberFields.includes(e.target.name)) {

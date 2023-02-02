@@ -2,9 +2,9 @@ import { useState } from 'react'
 
 function NewRoutineForm({ clientId, onRoutineCreate, handleShowFormState }){
     const formDefault = {
-        day: 'Monday',
+        day: '',
         exercise: '',
-        exercise_type: 'Strength',
+        exercise_type: '',
         sets: '',
         reps: '',
         distance_miles: '',
@@ -22,6 +22,8 @@ function NewRoutineForm({ clientId, onRoutineCreate, handleShowFormState }){
             setFormData({...formData, [e.target.name]:e.target.value})
         }
     }
+
+    console.log(formData)
 
     function handleNewRoutineSubmit(e){
         e.preventDefault()
@@ -48,24 +50,13 @@ function NewRoutineForm({ clientId, onRoutineCreate, handleShowFormState }){
     return(
         <form onSubmit={handleNewRoutineSubmit}>
             <label>Day of Week:
-                <select name="day" onChange={handleFormDataChange}>
-                    <option value="Monday">Monday</option>
-                    <option value="Tuesday">Tuesday</option>
-                    <option value="Wednesday">Wednesday</option>
-                    <option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option>
-                    <option value="Saturday">Saturday</option>
-                    <option value="Sunday">Sunday</option>
-                </select>
+                <input type="text" name="day" value={formData.day} onChange={handleFormDataChange} required />
             </label>
             <label>Exercise:
                 <input type="text" name="exercise" value={formData.exercise} onChange={handleFormDataChange} required />
             </label>
             <label>Exercise Type:
-                <select name="day" onChange={handleFormDataChange}>
-                    <option value="Strength">Strength</option>
-                    <option value="Cardio">Cardio</option>
-                </select>
+                <input type="text" name="exercise_type" value={formData.exercise_type} onChange={handleFormDataChange} required />
             </label>
             <label>Sets:
                 <input type="text" name="sets" value={formData.sets} onChange={handleFormDataChange} />
