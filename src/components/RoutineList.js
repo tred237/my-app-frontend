@@ -19,7 +19,6 @@ function RoutineList(){
         .then(data => setRoutines(data))
     },[clientId])
 
-    // when routines state variable changes run a useeffect to pull the updated summary stats
     useEffect(() => {
         fetch(`http://localhost:9292/clients/${clientId}/routines/summary_stats`)
         .then(res => res.json())
@@ -57,8 +56,8 @@ function RoutineList(){
     return(
         <React.Fragment>
             <button onClick={() => history.push("/")}>Go Home</button>
-            {showForm ? <NewRoutineForm clientId={clientId} onRoutineCreate={handleRoutineCreate} handleShowFormState={handleShowFormState} /> : <button onClick={() => setShowForm(!showForm)}>Add Routine</button>}
             <RoutineSummaryStats summaryStats={summaryStats} />
+            {showForm ? <NewRoutineForm clientId={clientId} onRoutineCreate={handleRoutineCreate} handleShowFormState={handleShowFormState} /> : <button onClick={() => setShowForm(!showForm)}>Add Routine</button>}
             <ul>
                 <p>Routines Per Week:</p>
                 {routines.map(e => <Routine key={e.id} 

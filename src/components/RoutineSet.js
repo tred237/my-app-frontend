@@ -1,6 +1,6 @@
 import React from 'react'
 
-function RoutineSet({ routine }){
+function RoutineSet({ routine, onSetEdit }){
     return(
         <React.Fragment>
             <p>Day: {routine.day}</p>
@@ -10,6 +10,7 @@ function RoutineSet({ routine }){
             <p>Reps: {routine.reps}</p>
             <p>Distance (Miles): {routine.distance_miles}</p>
             <p>Length of Time (Minutes): {routine.length_of_time_minutes}</p>
+            <button onClick={onSetEdit}>Edit</button>
         </React.Fragment>
     )
 }
