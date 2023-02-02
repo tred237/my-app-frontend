@@ -21,7 +21,6 @@ function NewRoutineForm({ clientId, onRoutineCreate, handleShowFormState }){
         } else if (!numberFields.includes(e.target.name)) {
             setFormData({...formData, [e.target.name]:e.target.value})
         }
-        // setFormData({...formData, [e.target.name]: e.target.value})
     }
 
     function handleNewRoutineSubmit(e){
