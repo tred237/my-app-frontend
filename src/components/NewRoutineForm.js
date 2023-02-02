@@ -14,7 +14,14 @@ function NewRoutineForm({ clientId, onRoutineCreate, handleShowFormState }){
     const [formData, setFormData] = useState({...formDefault})
 
     function handleFormDataChange(e) {
-        setFormData({...formData, [e.target.name]: e.target.value})
+        const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
+        
+        if(numberFields.includes(e.target.name) && !isNaN(Number(e.target.value))) {
+            setFormData({...formData, [e.target.name]:e.target.value})
+        } else if (!numberFields.includes(e.target.name)) {
+            setFormData({...formData, [e.target.name]:e.target.value})
+        }
+        // setFormData({...formData, [e.target.name]: e.target.value})
     }
 
     function handleNewRoutineSubmit(e){
@@ -42,13 +49,13 @@ function NewRoutineForm({ clientId, onRoutineCreate, handleShowFormState }){
     return(
         <form onSubmit={handleNewRoutineSubmit}>
             <label>Day of Week:
-                <input type="text" name="day" value={formData.day} onChange={handleFormDataChange} />
+                <input type="text" name="day" value={formData.day} onChange={handleFormDataChange} required />
             </label>
             <label>Exercise:
-                <input type="text" name="exercise" value={formData.exercise} onChange={handleFormDataChange} />
+                <input type="text" name="exercise" value={formData.exercise} onChange={handleFormDataChange} required />
             </label>
             <label>Exercise Type:
-                <input type="text" name="exercise_type" value={formData.exercise_type} onChange={handleFormDataChange} />
+                <input type="text" name="exercise_type" value={formData.exercise_type} onChange={handleFormDataChange} required />
             </label>
             <label>Sets:
                 <input type="text" name="sets" value={formData.sets} onChange={handleFormDataChange} />
