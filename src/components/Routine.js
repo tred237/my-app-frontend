@@ -6,8 +6,7 @@ import RoutineEdit from './RoutineEdit'
 function Routine({ routine, clientId, onRoutineDelete, onRoutineUpdate }){
     const [edit, setEdit] = useState(false)
 
-    function handleSetEdit(e = false){
-        if(e) e.preventDefault()
+    function handleSetEdit(){
         setEdit(!edit)
     }
 

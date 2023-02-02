@@ -82,8 +82,8 @@ function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineU
                     <input type="text" name="length_of_time_minutes" value={routineData.length_of_time_minutes} onChange={handleRoutineChange}/>
                 </label>
                 <button type="submit">Save</button>
-                <button onClick={onSetEdit}>Cancel</button>
             </form>
+            <button onClick={onSetEdit}>Cancel</button>
             <button onClick={handleRoutineDelete}>Delete</button>
         </React.Fragment>
     )
