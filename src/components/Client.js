@@ -6,8 +6,7 @@ import ClientSet from './ClientSet'
 function Client({ client, onClientDelete, onClientNameUpdate }) {
     const [edit, setEdit] = useState(false)
 
-    function handleSetEdit(e = false){
-        if(e) e.preventDefault()
+    function handleSetEdit(){
         setEdit(!edit)
     } 
 

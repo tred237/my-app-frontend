@@ -30,7 +30,6 @@ function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineU
         }
 
         if (Object.keys(editedValues).length !== 0) {
-            console.log("test")
             fetch(`http://localhost:9292/clients/${clientId}/routines/${routine.id}`,{
                 method: 'PATCH',
                 headers: {

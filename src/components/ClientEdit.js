@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 
 function ClientEdit({ client, onSetEdit, onClientDelete, onClientNameUpdate}){
@@ -33,12 +34,14 @@ function ClientEdit({ client, onSetEdit, onClientDelete, onClientNameUpdate}){
     }
 
     return(
-        <form onSubmit={handleClientEditSubmit}>
-            <input type="text" name="name" value={clientName} onChange={(e) => setClientName(e.target.value)} required/>
-            <button type="submit">Save</button>
+        <React.Fragment>
+            <form onSubmit={handleClientEditSubmit}>
+                <input type="text" name="name" value={clientName} onChange={(e) => setClientName(e.target.value)} required/>
+                <button type="submit">Save</button>
+            </form>
             <button onClick={onSetEdit}>Cancel</button>
             <button onClick={handleClientDelete}>Delete</button>
-        </form>
+        </React.Fragment>
     )
 }
 
