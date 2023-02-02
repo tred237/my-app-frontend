@@ -2,9 +2,9 @@ import { useState } from 'react'
 
 function NewRoutineForm({ clientId, onRoutineCreate, handleShowFormState }){
     const formDefault = {
-        day: '',
+        day: 'Monday',
         exercise: '',
-        exercise_type: '',
+        exercise_type: 'Strength',
         sets: '',
         reps: '',
         distance_miles: '',
@@ -48,13 +48,24 @@ function NewRoutineForm({ clientId, onRoutineCreate, handleShowFormState }){
     return(
         <form onSubmit={handleNewRoutineSubmit}>
             <label>Day of Week:
-                <input type="text" name="day" value={formData.day} onChange={handleFormDataChange} required />
+                <select name="day" onChange={handleFormDataChange}>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
             </label>
             <label>Exercise:
                 <input type="text" name="exercise" value={formData.exercise} onChange={handleFormDataChange} required />
             </label>
             <label>Exercise Type:
-                <input type="text" name="exercise_type" value={formData.exercise_type} onChange={handleFormDataChange} required />
+                <select name="day" onChange={handleFormDataChange}>
+                    <option value="Strength">Strength</option>
+                    <option value="Cardio">Cardio</option>
+                </select>
             </label>
             <label>Sets:
                 <input type="text" name="sets" value={formData.sets} onChange={handleFormDataChange} />
