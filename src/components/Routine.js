@@ -3,7 +3,7 @@ import { useState } from 'react'
 import RoutineSet from "./RoutineSet"
 import RoutineEdit from './RoutineEdit'
 
-function Routine({ routine, clientId, onRoutineDelete, onRoutineUpdate, toCamelCase }){
+function Routine({ routine, clientId, numberFields, onRoutineDelete, onRoutineUpdate, toCamelCase }){
     const [edit, setEdit] = useState(false)
 
     function handleSetEdit(){
@@ -14,6 +14,7 @@ function Routine({ routine, clientId, onRoutineDelete, onRoutineUpdate, toCamelC
         <li>
             {edit ? <RoutineEdit routine={routine} 
                                  clientId={clientId}
+                                 numberFields={numberFields}
                                  onSetEdit={handleSetEdit}
                                  onRoutineDelete={onRoutineDelete}
                                  onRoutineUpdate={onRoutineUpdate}

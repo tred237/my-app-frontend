@@ -12,6 +12,7 @@ function RoutineList({ clients, setClients, toCamelCase }){
     // const [summaryStats, setSummaryStats] = useState([])
     const { clientId } = useParams()
     const history = useHistory()
+    const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
 
     useEffect(() => {
         if(clients.length !== 0) setRoutines(clients.find(e => e.id == clientId).routines)
@@ -33,7 +34,6 @@ function RoutineList({ clients, setClients, toCamelCase }){
     }
 
     function handleRoutineUpdate(routineUpdates, routineId){
-        const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
         const newRoutineList = routines.map(e => {
             if(e.id == routineId){
                 for(const key in routineUpdates){
@@ -68,12 +68,18 @@ function RoutineList({ clients, setClients, toCamelCase }){
         <React.Fragment>
             <button onClick={() => history.push("/")}>Go Home</button>
             {/* <RoutineSummaryStats summaryStats={summaryStats} /> */}
-            {showForm ? <NewRoutineForm clientId={clientId} onRoutineCreate={handleRoutineCreate} onSetShowForm={handleSetShowForm} toCamelCase={toCamelCase} /> : <button onClick={() => setShowForm(!showForm)}>Add Routine</button>}
+            {showForm ? <NewRoutineForm clientId={clientId}
+                                        numberFields={numberFields}
+                                        onRoutineCreate={handleRoutineCreate} 
+                                        onSetShowForm={handleSetShowForm} 
+                                        toCamelCase={toCamelCase} /> 
+                      : <button onClick={() => setShowForm(!showForm)}>Add Routine</button>}
             <ul>
                 <p>Routines Per Week:</p>
                 {routines.map(e => <Routine key={e.id} 
                                             routine={e}
                                             clientId={clientId}
+                                            numberFields={numberFields}
                                             onRoutineDelete={handleRoutineDelete} 
                                             onRoutineUpdate={handleRoutineUpdate} 
                                             toCamelCase={toCamelCase} />)}

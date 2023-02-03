@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-function NewRoutineForm({ clientId, onRoutineCreate, onSetShowForm, toCamelCase }){
+function NewRoutineForm({ clientId, numberFields, onRoutineCreate, onSetShowForm, toCamelCase }){
     const formDefault = {
         day: '',
         exercise: '',
@@ -15,8 +15,6 @@ function NewRoutineForm({ clientId, onRoutineCreate, onSetShowForm, toCamelCase 
     const [formData, setFormData] = useState({...formDefault})
 
     function handleFormDataChange(e) {
-        const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
-        
         if(numberFields.includes(e.target.name) && !isNaN(Number(e.target.value)) && !e.target.value.includes('.') ) {
             setFormData({...formData, [e.target.name]:e.target.value})
         } else if (!numberFields.includes(e.target.name)) {
@@ -29,10 +27,9 @@ function NewRoutineForm({ clientId, onRoutineCreate, onSetShowForm, toCamelCase 
         const formDataCopy = {...formData}
         
         for (const key in formDataCopy){
-            const numericKeys = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
-            if (numericKeys.includes(key) && formDataCopy[key] === '') {
+            if (numberFields.includes(key) && formDataCopy[key] === '') {
                 formDataCopy[key] = null
-            } else if (!numericKeys.includes(key)) {
+            } else if (!numberFields.includes(key)) {
                 formDataCopy[key] = toCamelCase(formDataCopy[key])
             }
         }

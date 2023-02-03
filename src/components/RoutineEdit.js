@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import RoutineEditForm from './RoutineEditForm'
 
-function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineUpdate, toCamelCase }) {
+function RoutineEdit({ routine, clientId, numberFields, onSetEdit, onRoutineDelete, onRoutineUpdate, toCamelCase }) {
     const [routineData, setRoutineData] = useState({
                                                     day: routine.day,
                                                     exercise: routine.exercise,
@@ -18,8 +18,6 @@ function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineU
     }                                                
 
     function handleRoutineChange(e){
-        const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
-
         if(numberFields.includes(e.target.name) && !isNaN(Number(e.target.value)) && !e.target.value.includes('.') ) {
             setRoutineData({...routineData, [e.target.name]:e.target.value})
         } else if (!numberFields.includes(e.target.name)) {
@@ -30,12 +28,11 @@ function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineU
     function handleRoutineEditSubmit(e){
         e.preventDefault()
         const editedValues = {}
-        const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
 
         for (const key in routineData){
             const nullifiedData = routineData[key] === '' ? null : routineData[key]
             if(routine[key] !== nullifiedData) editedValues[key] = nullifiedData
-            if(!numberFields.includes(key)) editedValues[key] = toCamelCase(editedValues[key])
+            if(!numberFields.includes(key)) editedValues[key] = toCamelCase(routineData[key])
         }
 
         console.log(editedValues)
