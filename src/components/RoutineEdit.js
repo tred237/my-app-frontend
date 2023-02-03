@@ -20,7 +20,7 @@ function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineU
     function handleRoutineChange(e){
         const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
 
-        if(numberFields.includes(e.target.name) && !isNaN(Number(e.target.value))) {
+        if(numberFields.includes(e.target.name) && !isNaN(Number(e.target.value)) && !e.target.value.includes('.') ) {
             setRoutineData({...routineData, [e.target.name]:e.target.value})
         } else if (!numberFields.includes(e.target.name)) {
             setRoutineData({...routineData, [e.target.name]:e.target.value})
@@ -60,7 +60,7 @@ function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineU
             body: JSON.stringify(routine)
         })
         .then(res => res.json())
-        .then(data => onRoutineDelete(data.id))
+        .then(data => onRoutineDelete(data.id, clientId))
     }
     
     return(

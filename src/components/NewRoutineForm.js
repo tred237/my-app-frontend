@@ -17,14 +17,12 @@ function NewRoutineForm({ clientId, onRoutineCreate, onSetShowForm }){
     function handleFormDataChange(e) {
         const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
         
-        if(numberFields.includes(e.target.name) && !isNaN(Number(e.target.value))) {
+        if(numberFields.includes(e.target.name) && !isNaN(Number(e.target.value)) && !e.target.value.includes('.') ) {
             setFormData({...formData, [e.target.name]:e.target.value})
         } else if (!numberFields.includes(e.target.name)) {
             setFormData({...formData, [e.target.name]:e.target.value})
         }
     }
-
-    console.log(formData)
 
     function handleNewRoutineSubmit(e){
         e.preventDefault()
