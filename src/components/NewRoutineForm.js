@@ -24,13 +24,27 @@ function NewRoutineForm({ clientId, onRoutineCreate, onSetShowForm }){
         }
     }
 
+    function camelCase(data){
+        const formattedData = data.split(' ').map(e => {
+                                const splitString = e.split('')
+                                splitString[0] = splitString[0].toUpperCase()
+                                return splitString.join('')
+                              }).join(' ')
+
+        return formattedData
+    }
+
     function handleNewRoutineSubmit(e){
         e.preventDefault()
         const formDataCopy = {...formData}
         
         for (const key in formDataCopy){
-            const keysToChange = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
-            if (keysToChange.includes(key) && formDataCopy[key] === '') formDataCopy[key] = null
+            const numericKeys = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
+            if (numericKeys.includes(key) && formDataCopy[key] === '') {
+                formDataCopy[key] = null
+            } else if (!numericKeys.includes(key)) {
+                formDataCopy[key] = camelCase(formDataCopy[key])
+            }
         }
 
         fetch(`http://localhost:9292/clients/${clientId}/routines`,{
