@@ -33,16 +33,21 @@ function RoutineList({ clients, setClients }){
     }
 
     function handleRoutineUpdate(routineUpdates, routineId){
+        const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
         const newRoutineList = routines.map(e => {
             if(e.id == routineId){
                 for(const key in routineUpdates){
-                    e[key] = routineUpdates[key]
+                    numberFields.includes(key) ? e[key] = Number(routineUpdates[key]) : e[key] = routineUpdates[key]
                 }
             }
             return e
         })
+        const newClientList = clients.map(e => {
+            if(e.id == clientId) e.routines = [...newRoutineList]
+            return e
+        })
 
-        setRoutines(newRoutineList)
+        setClients(newClientList)
     }
 
     function handleRoutineCreate(newRoutine){
