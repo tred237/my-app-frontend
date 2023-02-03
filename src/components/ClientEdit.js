@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-function ClientEdit({ client, onSetEdit, onClientDelete, onClientNameUpdate}){
+function ClientEdit({ client, onSetEdit, onClientDelete, onClientNameUpdate, toCamelCase }){
     const [clientName, setClientName] = useState(client.name)
 
     function handleClientDelete() {
@@ -17,17 +17,18 @@ function ClientEdit({ client, onSetEdit, onClientDelete, onClientNameUpdate}){
 
     function handleClientEditSubmit(e){
         e.preventDefault()
+        const formattedClientName = toCamelCase(clientName)
 
-        if(clientName !== client.name){
+        if(formattedClientName !== client.name){
             fetch(`http://localhost:9292/clients/${client.id}`,{
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({name: clientName})
+                body: JSON.stringify({name: formattedClientName})
             })
             .then(res => res.json())
-            .then(() => onClientNameUpdate(client.id, clientName))
+            .then(() => onClientNameUpdate(client.id, formattedClientName))
         }
 
         onSetEdit()

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import RoutineSet from "./RoutineSet"
 import RoutineEdit from './RoutineEdit'
 
-function Routine({ routine, clientId, onRoutineDelete, onRoutineUpdate }){
+function Routine({ routine, clientId, onRoutineDelete, onRoutineUpdate, toCamelCase }){
     const [edit, setEdit] = useState(false)
 
     function handleSetEdit(){
@@ -12,7 +12,12 @@ function Routine({ routine, clientId, onRoutineDelete, onRoutineUpdate }){
 
     return(
         <li>
-            {edit ? <RoutineEdit routine={routine} clientId={clientId} onSetEdit={handleSetEdit} onRoutineDelete={onRoutineDelete} onRoutineUpdate={onRoutineUpdate} />
+            {edit ? <RoutineEdit routine={routine} 
+                                 clientId={clientId}
+                                 onSetEdit={handleSetEdit}
+                                 onRoutineDelete={onRoutineDelete}
+                                 onRoutineUpdate={onRoutineUpdate}
+                                 toCamelCase={toCamelCase} />
                   : <RoutineSet routine={routine} onSetEdit={handleSetEdit} />}
         </li>
     )

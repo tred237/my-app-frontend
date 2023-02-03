@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import RoutineEditForm from './RoutineEditForm'
 
-function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineUpdate }) {
+function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineUpdate, toCamelCase }) {
     const [routineData, setRoutineData] = useState({
                                                     day: routine.day,
                                                     exercise: routine.exercise,
@@ -11,7 +11,7 @@ function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineU
                                                     reps: handleNulls(routine.reps),
                                                     distance_miles: handleNulls(routine.distance_miles),
                                                     length_of_time_minutes: handleNulls(routine.length_of_time_minutes)
-                                                    })                                          
+                                                    })                                    
 
     function handleNulls(data){
         return data === null ? '' : data
@@ -30,11 +30,15 @@ function RoutineEdit({ routine, clientId, onSetEdit, onRoutineDelete, onRoutineU
     function handleRoutineEditSubmit(e){
         e.preventDefault()
         const editedValues = {}
+        const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
 
         for (const key in routineData){
             const nullifiedData = routineData[key] === '' ? null : routineData[key]
             if(routine[key] !== nullifiedData) editedValues[key] = nullifiedData
+            if(!numberFields.includes(key)) editedValues[key] = toCamelCase(editedValues[key])
         }
+
+        console.log(editedValues)
 
         if (Object.keys(editedValues).length !== 0) {
             fetch(`http://localhost:9292/clients/${clientId}/routines/${routine.id}`,{

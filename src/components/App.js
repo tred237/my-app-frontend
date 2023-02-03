@@ -33,6 +33,16 @@ function App() {
     setClients(newClientList)
   }
 
+  function toCamelCase(data){
+    const formattedData = data.split(' ').map(e => {
+                            const splitString = e.split('')
+                            splitString[0] = splitString[0].toUpperCase()
+                            return splitString.join('')
+                          }).join(' ')
+
+    return formattedData
+  }
+
   return (
     <div>
       <header>
@@ -40,10 +50,10 @@ function App() {
       </header>
       <Switch>
         <Route exact path="/">
-          <ClientList clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
+          <ClientList clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} toCamelCase={toCamelCase} />
         </Route>
         <Route exact path="/clients/:clientId/routines">
-          <RoutineList clients={clients} setClients={setClients} />
+          <RoutineList clients={clients} setClients={setClients} toCamelCase={toCamelCase} />
         </Route>
       </Switch>
     </div>

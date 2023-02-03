@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function NewClientForm({ onNewClientSubmit, handleShowFormState }) {
+function NewClientForm({ onNewClientSubmit, handleShowFormState, toCamelCase }) {
     const formDefault = {name: ''}
     const [formData, setFormData] = useState({...formDefault})
 
@@ -11,6 +11,8 @@ function NewClientForm({ onNewClientSubmit, handleShowFormState }) {
     function handleSubmit(e){
         e.preventDefault()
         const newClient = {...formData}
+        newClient.name = toCamelCase(newClient.name)
+
         fetch('http://localhost:9292/clients',{
             method: 'POST',
             headers: {
