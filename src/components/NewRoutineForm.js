@@ -1,6 +1,7 @@
+import React from 'react'
 import { useState } from 'react'
 
-function NewRoutineForm({ clientId, onRoutineCreate, handleShowFormState }){
+function NewRoutineForm({ clientId, onRoutineCreate, onSetShowForm }){
     const formDefault = {
         day: '',
         exercise: '',
@@ -48,31 +49,33 @@ function NewRoutineForm({ clientId, onRoutineCreate, handleShowFormState }){
     }
 
     return(
-        <form onSubmit={handleNewRoutineSubmit}>
-            <label>Day of Week:
-                <input type="text" name="day" value={formData.day} onChange={handleFormDataChange} required />
-            </label>
-            <label>Exercise:
-                <input type="text" name="exercise" value={formData.exercise} onChange={handleFormDataChange} required />
-            </label>
-            <label>Exercise Type:
-                <input type="text" name="exercise_type" value={formData.exercise_type} onChange={handleFormDataChange} required />
-            </label>
-            <label>Sets:
-                <input type="text" name="sets" value={formData.sets} onChange={handleFormDataChange} />
-            </label>
-            <label>Reps:
-                <input type="text" name="reps" value={formData.reps} onChange={handleFormDataChange}/>
-            </label>Distance (Miles):
-            <label>
-                <input type="text" name="distance_miles" value={formData.distance_miles} onChange={handleFormDataChange} />
-            </label>
-            <label>Length of Time (Minutes):
-                <input type="text" name="length_of_time_minutes" value={formData.length_of_time_minutes} onChange={handleFormDataChange} />
-            </label>
-            <button type="submit">Submit</button>
-            <button onClick={handleShowFormState}>Cancel</button>
-        </form>
+        <div>
+            <form onSubmit={handleNewRoutineSubmit}>
+                <label>Day of Week:
+                    <input type="text" name="day" value={formData.day} onChange={handleFormDataChange} required />
+                </label>
+                <label>Exercise:
+                    <input type="text" name="exercise" value={formData.exercise} onChange={handleFormDataChange} required />
+                </label>
+                <label>Exercise Type:
+                    <input type="text" name="exercise_type" value={formData.exercise_type} onChange={handleFormDataChange} required />
+                </label>
+                <label>Sets:
+                    <input type="text" name="sets" value={formData.sets} onChange={handleFormDataChange} />
+                </label>
+                <label>Reps:
+                    <input type="text" name="reps" value={formData.reps} onChange={handleFormDataChange}/>
+                </label>Distance (Miles):
+                <label>
+                    <input type="text" name="distance_miles" value={formData.distance_miles} onChange={handleFormDataChange} />
+                </label>
+                <label>Length of Time (Minutes):
+                    <input type="text" name="length_of_time_minutes" value={formData.length_of_time_minutes} onChange={handleFormDataChange} />
+                </label>
+                <button type="submit">Submit</button>
+            </form>
+            <button onClick={onSetShowForm}>Cancel</button>
+        </div>
     )
 }
 
