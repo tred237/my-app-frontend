@@ -6,14 +6,13 @@ import NewRoutineForm from './NewRoutineForm'
 import Routine from './Routine'
 // import RoutineSummaryStats from './RoutineSummaryStats'
 
-function RoutineList({ clients }){
+function RoutineList({ clients, setClients }){
     const [routines, setRoutines] = useState([])
     const [showForm, setShowForm] = useState(false)
     // const [summaryStats, setSummaryStats] = useState([])
     const { clientId } = useParams()
     const history = useHistory()
 
-    
     useEffect(() => {
         if(clients.length !== 0) setRoutines(clients.find(e => e.id == clientId).routines)
     },[clients])
@@ -26,7 +25,11 @@ function RoutineList({ clients }){
 
     function handleRoutineDelete(routineId){
         const newRoutineList = routines.filter(e => e.id !== routineId)
-        setRoutines(newRoutineList)
+        const newClientList = clients.map(e => {
+            if(e.id == clientId) e.routines = [...newRoutineList]
+            return e
+        })
+        setClients(newClientList)
     }
 
     function handleRoutineUpdate(routineUpdates, routineId){
