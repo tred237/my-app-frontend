@@ -51,16 +51,12 @@ function RoutineList({ clients, setClients }){
         setClients(newClientList)
     }
 
-    // update client state when new routine is created
-    // use map to iterate over clients
-    // create a copy of routines and append new routine then add to clients routines
     function handleRoutineCreate(newRoutine){
         const newClientList = clients.map(e => {
             if(e.id == clientId) e.routines = [...routines, newRoutine]
             return e
         })
         setClients(newClientList)
-        // setRoutines([...routines, newRoutine])
         setShowForm(!showForm)
     }
 
