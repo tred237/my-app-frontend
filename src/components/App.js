@@ -43,7 +43,7 @@ function App() {
           <ClientList clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} />
         </Route>
         <Route exact path="/clients/:clientId/routines">
-          <RoutineList />
+          <RoutineList clients={clients} />
         </Route>
       </Switch>
     </div>
