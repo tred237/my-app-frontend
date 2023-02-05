@@ -6,24 +6,12 @@ import RoutineList from './RoutineList'
 
 function App() {
   const [clients, setClients] = useState([])
-  // const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
 
   useEffect(() => {
     fetch('http://localhost:9292/clients')
     .then((res) => res.json())
-    .then(data => {
-      // check for routines
-      // const newList = data.map(e => {
-      //   if ('routines' in e) e.routines = []
-      //   return e
-      // })
-      // end
-      setClients(data)
-      // setClients(newList)
-    })
+    .then(data => setClients(data))
   },[])
-
-  console.log(clients)
 
   function handleClientDeleteClick(clientId){
     const newClientList = clients.filter(e => e.id !== clientId)
@@ -31,7 +19,6 @@ function App() {
   }
 
   function handleNewClientSubmit(client){
-    // client.routines = []
     setClients([...clients, client])
   }
 
@@ -40,7 +27,6 @@ function App() {
       if(e.id === clientId) e.name = clientName
       return e
     })
-
     setClients(newClientList)
   }
 
@@ -54,6 +40,10 @@ function App() {
     return formattedData
   }
 
+  function inputFieldGenerator(name, valueField, cb, required){
+    return <input type="text" name={name} value={valueField} onChange={cb} required={required ? true : false} />
+  }
+
   return (
     <div>
       <header>
@@ -61,10 +51,15 @@ function App() {
       </header>
       <Switch>
         <Route exact path="/">
-          <ClientList clients={clients} onClientDelete={handleClientDeleteClick} onNewClientSubmit={handleNewClientSubmit} onClientNameUpdate={handleClientNameUpdate} toCamelCase={toCamelCase} />
+          <ClientList clients={clients} 
+                      onClientDelete={handleClientDeleteClick} 
+                      onNewClientSubmit={handleNewClientSubmit} 
+                      onClientNameUpdate={handleClientNameUpdate} 
+                      toCamelCase={toCamelCase} 
+                      inputFieldGenerator={inputFieldGenerator} />
         </Route>
         <Route exact path="/clients/:clientId/routines">
-          <RoutineList clients={clients} setClients={setClients} toCamelCase={toCamelCase} />
+          <RoutineList clients={clients} setClients={setClients} toCamelCase={toCamelCase} inputFieldGenerator={inputFieldGenerator} />
         </Route>
       </Switch>
     </div>

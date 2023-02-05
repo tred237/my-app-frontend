@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-function NewRoutineForm({ clientId, numberFields, onRoutineCreate, onSetShowForm, toCamelCase }){
+function NewRoutineForm({ clientId, numberFields, onRoutineCreate, onSetShowForm, toCamelCase, inputFieldGenerator }){
     const formDefault = {
         day: '',
         exercise: '',
@@ -51,25 +51,25 @@ function NewRoutineForm({ clientId, numberFields, onRoutineCreate, onSetShowForm
         <div>
             <form onSubmit={handleNewRoutineSubmit}>
                 <label>Day of Week:
-                    <input type="text" name="day" value={formData.day} onChange={handleFormDataChange} required />
+                    {inputFieldGenerator('day', formData.day, handleFormDataChange, true)}
                 </label>
                 <label>Exercise:
-                    <input type="text" name="exercise" value={formData.exercise} onChange={handleFormDataChange} required />
+                    {inputFieldGenerator('exercise', formData.exercise, handleFormDataChange, true)}
                 </label>
                 <label>Exercise Type:
-                    <input type="text" name="exercise_type" value={formData.exercise_type} onChange={handleFormDataChange} required />
+                    {inputFieldGenerator('exercise_type', formData.exercise_type, handleFormDataChange, true)}
                 </label>
                 <label>Sets:
-                    <input type="text" name="sets" value={formData.sets} onChange={handleFormDataChange} />
+                    {inputFieldGenerator('sets', formData.sets, handleFormDataChange, false)}
                 </label>
                 <label>Reps:
-                    <input type="text" name="reps" value={formData.reps} onChange={handleFormDataChange}/>
+                    {inputFieldGenerator('reps', formData.reps, handleFormDataChange, false)}
                 </label>Distance (Miles):
                 <label>
-                    <input type="text" name="distance_miles" value={formData.distance_miles} onChange={handleFormDataChange} />
+                    {inputFieldGenerator('distance_miles', formData.distance_miles, handleFormDataChange, false)}
                 </label>
                 <label>Length of Time (Minutes):
-                    <input type="text" name="length_of_time_minutes" value={formData.length_of_time_minutes} onChange={handleFormDataChange} />
+                    {inputFieldGenerator('length_of_time_minutes', formData.length_of_time_minutes, handleFormDataChange, false)}
                 </label>
                 <button type="submit">Submit</button>
             </form>

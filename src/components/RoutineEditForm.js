@@ -1,27 +1,27 @@
-function RoutineEditForm({ routineData, onRoutineEditSubmit, onRoutineChange }){
+function RoutineEditForm({ routineData, onRoutineEditSubmit, onRoutineChange, inputFieldGenerator }){
 
     return(
         <form onSubmit={onRoutineEditSubmit}>
             <label>Day of Week: 
-                <input type="text" name="day" value={routineData.day} onChange={onRoutineChange} required/>
+                {inputFieldGenerator('day', routineData.day, onRoutineChange, true)}
             </label>
             <label>Exercise: 
-                <input type="text" name="exercise" value={routineData.exercise} onChange={onRoutineChange} required/>
+                {inputFieldGenerator('exercise', routineData.exercise, onRoutineChange, true)}
             </label>
             <label>Exercise Type: 
-                <input type="text" name="exercise_type" value={routineData.exercise_type} onChange={onRoutineChange} required/>
+                {inputFieldGenerator('exercise_type', routineData.exercise_type, onRoutineChange, true)}
             </label>
             <label>Sets: 
-                <input type="text" name="sets" value={routineData.sets} onChange={onRoutineChange}/>
+                {inputFieldGenerator('sets', routineData.sets, onRoutineChange, false)}
             </label>
             <label>Reps: 
-                <input type="text" name="reps" value={routineData.reps} onChange={onRoutineChange}/>
+                {inputFieldGenerator('reps', routineData.reps, onRoutineChange, false)}
             </label>
             <label>Distance (Miles): 
-                <input type="text" name="distance_miles" value={routineData.distance_miles} onChange={onRoutineChange}/>
+                {inputFieldGenerator('distance_miles', routineData.distance_miles, onRoutineChange, false)}
             </label>
             <label>Length of Time (Minutes): 
-                <input type="text" name="length_of_time_minutes" value={routineData.length_of_time_minutes} onChange={onRoutineChange}/>
+                {inputFieldGenerator('length_of_time_minutes', routineData.length_of_time_minutes, onRoutineChange, false)}
             </label>
             <button type="submit">Save</button>
         </form>

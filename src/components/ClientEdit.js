@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-function ClientEdit({ client, onSetEdit, onClientDelete, onClientNameUpdate, toCamelCase }){
+function ClientEdit({ client, onSetEdit, onClientDelete, onClientNameUpdate, toCamelCase, inputFieldGenerator }){
     const [clientName, setClientName] = useState(client.name)
 
     function handleClientDelete() {
@@ -37,7 +37,7 @@ function ClientEdit({ client, onSetEdit, onClientDelete, onClientNameUpdate, toC
     return(
         <React.Fragment>
             <form onSubmit={handleClientEditSubmit}>
-                <input type="text" name="name" value={clientName} onChange={(e) => setClientName(e.target.value)} required/>
+                {inputFieldGenerator('name', clientName, (e) => setClientName(e.target.value), true )}
                 <button type="submit">Save</button>
             </form>
             <button onClick={onSetEdit}>Cancel</button>

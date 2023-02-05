@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import RoutineEditForm from './RoutineEditForm'
 
-function RoutineEdit({ routine, clientId, numberFields, onSetEdit, onRoutineDelete, onRoutineUpdate, toCamelCase }) {
+function RoutineEdit({ routine, clientId, numberFields, onSetEdit, onRoutineDelete, onRoutineUpdate, toCamelCase, inputFieldGenerator }) {
     const [routineData, setRoutineData] = useState({
                                                     day: routine.day,
                                                     exercise: routine.exercise,
@@ -64,7 +64,10 @@ function RoutineEdit({ routine, clientId, numberFields, onSetEdit, onRoutineDele
     
     return(
         <React.Fragment>
-            <RoutineEditForm routineData={routineData} onRoutineEditSubmit={handleRoutineEditSubmit} onRoutineChange={handleRoutineChange} />
+            <RoutineEditForm routineData={routineData} 
+                             onRoutineEditSubmit={handleRoutineEditSubmit}
+                             onRoutineChange={handleRoutineChange} 
+                             inputFieldGenerator={inputFieldGenerator} />
             <button onClick={onSetEdit}>Cancel</button>
             <button onClick={handleRoutineDelete}>Delete</button>
         </React.Fragment>

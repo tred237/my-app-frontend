@@ -3,7 +3,7 @@ import { useState } from 'react'
 import ClientEdit from './ClientEdit'
 import ClientSet from './ClientSet'
 
-function Client({ client, onClientDelete, onClientNameUpdate, toCamelCase }) {
+function Client({ client, onClientDelete, onClientNameUpdate, toCamelCase, inputFieldGenerator }) {
     const [edit, setEdit] = useState(false)
 
     function handleSetEdit(){
@@ -12,7 +12,12 @@ function Client({ client, onClientDelete, onClientNameUpdate, toCamelCase }) {
 
     return(
         <li>
-            {edit ? <ClientEdit client={client} onSetEdit={handleSetEdit} onClientDelete={onClientDelete} onClientNameUpdate={onClientNameUpdate} toCamelCase={toCamelCase} />
+            {edit ? <ClientEdit client={client}
+                                onSetEdit={handleSetEdit} 
+                                onClientDelete={onClientDelete} 
+                                onClientNameUpdate={onClientNameUpdate} 
+                                toCamelCase={toCamelCase} 
+                                inputFieldGenerator={inputFieldGenerator} />
                   : <ClientSet client={client} onSetEdit={handleSetEdit} />}
         </li>
     )

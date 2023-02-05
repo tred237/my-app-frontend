@@ -6,7 +6,7 @@ import NewRoutineForm from './NewRoutineForm'
 import Routine from './Routine'
 import RoutineSummaryStats from './RoutineSummaryStats'
 
-function RoutineList({ clients, setClients, toCamelCase }){
+function RoutineList({ clients, setClients, toCamelCase, inputFieldGenerator }){
     const [routines, setRoutines] = useState([])
     const [showForm, setShowForm] = useState(false)
     const [summaryStats, setSummaryStats] = useState([])
@@ -20,9 +20,7 @@ function RoutineList({ clients, setClients, toCamelCase }){
             setRoutines(fetchedClient.routines ? fetchedClient.routines : [])
         }
     },[clients])
-
-    // console.log(routines)
-
+    
     useEffect(() => {
         fetch(`http://localhost:9292/clients/${clientId}/routines/summary_stats`)
         .then(res => res.json())
@@ -72,12 +70,14 @@ function RoutineList({ clients, setClients, toCamelCase }){
     return(
         <React.Fragment>
             <button onClick={() => history.push("/")}>Go Home</button>
+            <h2>{`${clients.find(e => e.id == clientId).name} - ${clientId}`}</h2>
             <RoutineSummaryStats summaryStats={summaryStats} />
             {showForm ? <NewRoutineForm clientId={clientId}
                                         numberFields={numberFields}
                                         onRoutineCreate={handleRoutineCreate} 
                                         onSetShowForm={handleSetShowForm} 
-                                        toCamelCase={toCamelCase} /> 
+                                        toCamelCase={toCamelCase}
+                                        inputFieldGenerator={inputFieldGenerator} /> 
                       : <button onClick={() => setShowForm(!showForm)}>Add Routine</button>}
             <ul>
             <p>Routines Per Week:</p>
@@ -87,7 +87,8 @@ function RoutineList({ clients, setClients, toCamelCase }){
                                         numberFields={numberFields}
                                         onRoutineDelete={handleRoutineDelete} 
                                         onRoutineUpdate={handleRoutineUpdate} 
-                                        toCamelCase={toCamelCase} />)}
+                                        toCamelCase={toCamelCase}
+                                        inputFieldGenerator={inputFieldGenerator} />)}
             </ul>
         </React.Fragment>
     )
