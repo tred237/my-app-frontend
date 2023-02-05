@@ -6,11 +6,21 @@ import RoutineList from './RoutineList'
 
 function App() {
   const [clients, setClients] = useState([])
+  // const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
 
   useEffect(() => {
     fetch('http://localhost:9292/clients')
     .then((res) => res.json())
-    .then(data => setClients(data))
+    .then(data => {
+      // check for routines
+      // const newList = data.map(e => {
+      //   if ('routines' in e) e.routines = []
+      //   return e
+      // })
+      // end
+      setClients(data)
+      // setClients(newList)
+    })
   },[])
 
   console.log(clients)
@@ -21,6 +31,7 @@ function App() {
   }
 
   function handleNewClientSubmit(client){
+    // client.routines = []
     setClients([...clients, client])
   }
 

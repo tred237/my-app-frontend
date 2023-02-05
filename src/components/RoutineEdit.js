@@ -35,8 +35,6 @@ function RoutineEdit({ routine, clientId, numberFields, onSetEdit, onRoutineDele
             if(!numberFields.includes(key)) editedValues[key] = toCamelCase(routineData[key])
         }
 
-        console.log(editedValues)
-
         if (Object.keys(editedValues).length !== 0) {
             fetch(`http://localhost:9292/clients/${clientId}/routines/${routine.id}`,{
                 method: 'PATCH',

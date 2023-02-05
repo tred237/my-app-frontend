@@ -15,8 +15,13 @@ function RoutineList({ clients, setClients, toCamelCase }){
     const numberFields = ['sets', 'reps', 'distance_miles', 'length_of_time_minutes']
 
     useEffect(() => {
-        if(clients.length !== 0) setRoutines(clients.find(e => e.id == clientId).routines)
+        if(clients.length !== 0) {
+            const fetchedClient = clients.find(e => e.id == clientId)
+            setRoutines(fetchedClient.routines ? fetchedClient.routines : [])
+        }
     },[clients])
+
+    // console.log(routines)
 
     // useEffect(() => {
     //     fetch(`http://localhost:9292/clients/${clientId}/routines/summary_stats`)
@@ -37,7 +42,7 @@ function RoutineList({ clients, setClients, toCamelCase }){
         const newRoutineList = routines.map(e => {
             if(e.id == routineId){
                 for(const key in routineUpdates){
-                    numberFields.includes(key) ? e[key] = Number(routineUpdates[key]) : e[key] = routineUpdates[key]
+                    numberFields.includes(key) && routineUpdates[key] !== null ? e[key] = Number(routineUpdates[key]) : e[key] = routineUpdates[key]
                 }
             }
             return e
@@ -75,14 +80,14 @@ function RoutineList({ clients, setClients, toCamelCase }){
                                         toCamelCase={toCamelCase} /> 
                       : <button onClick={() => setShowForm(!showForm)}>Add Routine</button>}
             <ul>
-                <p>Routines Per Week:</p>
-                {routines.map(e => <Routine key={e.id} 
-                                            routine={e}
-                                            clientId={clientId}
-                                            numberFields={numberFields}
-                                            onRoutineDelete={handleRoutineDelete} 
-                                            onRoutineUpdate={handleRoutineUpdate} 
-                                            toCamelCase={toCamelCase} />)}
+            <p>Routines Per Week:</p>
+            {routines.map(e => <Routine key={e.id} 
+                                        routine={e}
+                                        clientId={clientId}
+                                        numberFields={numberFields}
+                                        onRoutineDelete={handleRoutineDelete} 
+                                        onRoutineUpdate={handleRoutineUpdate} 
+                                        toCamelCase={toCamelCase} />)}
             </ul>
         </React.Fragment>
     )
