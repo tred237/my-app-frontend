@@ -18,6 +18,13 @@ header {
   padding-top: 1%;
 }
 
+button {
+  font-family: 'Monaco';
+  background-color: white;
+  width: fit-content;
+  height: fit-content;
+}
+
 #client-list {
   margin-left: 185px;
   margin-right: 185px;
@@ -34,14 +41,14 @@ header {
 .client-grid-item {
   display: grid;
   border: solid;
-  text-align: center;
   color: black;
   align-items: center;
   justify-content: center;
+  text-align: center;
   min-height: 215px;
   margin-left: 16px;
   margin-right: 16px;
-  grid-template-rows: 135px 30px 30px;
+  grid-template-rows: 150px 25px 25px;
 }
 
 #client-name {
@@ -50,19 +57,17 @@ header {
   padding-bottom: 3px;
 }
 
-button {
-  font-family: 'Monaco';
-  background-color: white;
-  height: 25px;
+.client-set-button {
+  height: 24px;
   width: 100px;
 }
 
 #add-new-client {
   display: grid;
-  grid-template-columns: fit-content(100%) fit-content(100%);
+  grid-template-columns: 390px 10%;
 }
 
 #add-new-client-form {
   display: grid;
-  grid-template-columns: 325px 101px;
+  grid-template-columns: 322px 101px;
 }

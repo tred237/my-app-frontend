@@ -11,7 +11,7 @@ function Routine({ routine, clientId, numberFields, onRoutineDelete, onRoutineUp
     }
 
     return(
-        <li>
+        <div className="routine">
             {edit ? <RoutineEdit routine={routine} 
                                  clientId={clientId}
                                  numberFields={numberFields}
@@ -21,7 +21,7 @@ function Routine({ routine, clientId, numberFields, onRoutineDelete, onRoutineUp
                                  toCamelCase={toCamelCase}
                                  inputFieldGenerator={inputFieldGenerator} />
                   : <RoutineSet routine={routine} onSetEdit={handleSetEdit} />}
-        </li>
+        </div>
     )
 }
 
