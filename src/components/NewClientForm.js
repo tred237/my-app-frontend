@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 
 function NewClientForm({ onNewClientSubmit, handleShowFormState, toCamelCase, inputFieldGenerator }) {
@@ -23,17 +24,21 @@ function NewClientForm({ onNewClientSubmit, handleShowFormState, toCamelCase, in
         .then(res => res.json())
         .then(data => onNewClientSubmit(data))
 
+        handleShowFormState()
         setFormData({...formDefault})
     }
 
     return(
-        <form onSubmit={handleSubmit}>
-            <label>Input Client Name:
-                {inputFieldGenerator('name', formData.name, handleFormData, true)}
-            </label>
-            <button type="submit">Submit</ button>
+        <div id="add-new-client">
+            <form id="add-new-client-form" onSubmit={handleSubmit}>
+                <label>Input Client Name:
+                    {inputFieldGenerator('name', formData.name, handleFormData, true)}
+                </label>
+                
+                <button type="submit">Submit</ button>
+            </form>
             <button onClick={handleShowFormState}>Cancel</button>
-        </form>
+        </div>
     )
 }
 

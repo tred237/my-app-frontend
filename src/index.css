@@ -1,3 +1,68 @@
-body {
-  color: #000;
+html, body {
+  background-color: #008B8B;
+  color: white;
+  font-family: 'Monaco';
+}
+
+#inner-body {
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: greenyellow;
+  color: black;
+  height: 100%;
+}
+
+header {
+  text-align: center;
+  padding-top: 1%;
+}
+
+#client-list {
+  margin-left: 185px;
+  margin-right: 185px;
+}
+
+#client-grid {
+  margin-left: 10%;
+  margin-right: 10%;
+  display: grid;
+  grid-template-columns: 215px 215px 215px 215px;
+  justify-content: center;
+}
+
+.client-grid-item {
+  display: grid;
+  border: solid;
+  text-align: center;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  min-height: 215px;
+  margin-left: 16px;
+  margin-right: 16px;
+  grid-template-rows: 135px 30px 30px;
+}
+
+#client-name {
+  overflow-wrap: break-word;
+  width: 100px;
+  padding-bottom: 3px;
+}
+
+button {
+  font-family: 'Monaco';
+  background-color: white;
+  height: 25px;
+  width: 100px;
+}
+
+#add-new-client {
+  display: grid;
+  grid-template-columns: fit-content(100%) fit-content(100%);
+}
+
+#add-new-client-form {
+  display: grid;
+  grid-template-columns: 325px 101px;
 }

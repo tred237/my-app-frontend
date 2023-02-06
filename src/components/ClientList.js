@@ -6,26 +6,25 @@ import NewClientForm from './NewClientForm'
 function ClientList({ clients, onClientDelete, onNewClientSubmit, onClientNameUpdate, toCamelCase, inputFieldGenerator }) {
     const [showForm, setShowForm] = useState(false)
 
-    function handleShowFormState(e) {
-        e.preventDefault()
+    function handleShowFormState() {
         setShowForm(!showForm)
     }
 
     return(
-        <div>
+        <div id="client-list">
             {showForm ? <NewClientForm onNewClientSubmit={onNewClientSubmit} 
                                        handleShowFormState={handleShowFormState} 
                                        toCamelCase={toCamelCase} 
                                        inputFieldGenerator={inputFieldGenerator} /> 
                       : <button onClick={() => setShowForm(!showForm)}>Add Client</button>}
-            <ul>
+            <div id="client-grid">
                 {clients.map(e => <Client key={e.id} 
                                           client={e}
                                           onClientDelete={onClientDelete} 
                                           onClientNameUpdate={onClientNameUpdate} 
                                           toCamelCase={toCamelCase} 
                                           inputFieldGenerator={inputFieldGenerator} />)}
-            </ul>
+            </div>
         </div>
     )
 }

@@ -45,9 +45,9 @@ function App() {
   }
 
   return (
-    <div>
+    <div id="inner-body">
       <header>
-        <p>Training Catalog</p>
+        <h1>Training Catalog</h1>
       </header>
       <Switch>
         <Route exact path="/">

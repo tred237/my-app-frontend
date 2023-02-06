@@ -6,7 +6,7 @@ function ClientSet({ client, onSetEdit }){
 
     return (
         <React.Fragment>
-            {client.name}
+            <p id="client-name">{client.name}</p>
             <button onClick={() => history.push(`/clients/${client.id}/routines`)}>Routine</button>
             <button onClick={onSetEdit}>Edit</button>
         </React.Fragment>
