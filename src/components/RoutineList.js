@@ -7,6 +7,7 @@ import Routine from './Routine'
 import RoutineSummaryStats from './RoutineSummaryStats'
 
 function RoutineList({ clients, setClients, toCamelCase, inputFieldGenerator }){
+    const [client, setClient] = useState([])
     const [routines, setRoutines] = useState([])
     const [showForm, setShowForm] = useState(false)
     const [summaryStats, setSummaryStats] = useState([])
@@ -17,6 +18,7 @@ function RoutineList({ clients, setClients, toCamelCase, inputFieldGenerator }){
     useEffect(() => {
         if(clients.length !== 0) {
             const fetchedClient = clients.find(e => e.id == clientId)
+            setClient(fetchedClient)
             setRoutines(fetchedClient.routines ? fetchedClient.routines : [])
         }
     },[clients])
@@ -70,7 +72,7 @@ function RoutineList({ clients, setClients, toCamelCase, inputFieldGenerator }){
     return(
         <React.Fragment>
             <button onClick={() => history.push("/")}>Go Home</button>
-            <h2>{`${clients.find(e => e.id == clientId).name} - ${clientId}`}</h2>
+            <h2>{`${client.name} - ${clientId}`}</h2>
             <RoutineSummaryStats summaryStats={summaryStats} />
             {showForm ? <NewRoutineForm clientId={clientId}
                                         numberFields={numberFields}
