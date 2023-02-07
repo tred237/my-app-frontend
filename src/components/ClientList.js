@@ -12,7 +12,7 @@ function ClientList({ clients, onClientDelete, onNewClientSubmit, onClientNameUp
 
     return(
         <div id="client-list">
-            <h1>Clients</h1>
+            <h1 className="top-page-title">Clients</h1>
             {showForm ? <NewClientForm onNewClientSubmit={onNewClientSubmit} 
                                        handleShowFormState={handleShowFormState} 
                                        toCamelCase={toCamelCase} 

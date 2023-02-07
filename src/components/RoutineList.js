@@ -71,7 +71,7 @@ function RoutineList({ clients, setClients, toCamelCase, inputFieldGenerator }){
 
     return(
         <div id="routines-page">
-            <h1>Routines</h1>
+            <h1 className="top-page-title">Routines</h1>
             <button onClick={() => history.push("/clients")}>View Clients</button>
             <h2>{`${client.name} - ${clientId}`}</h2>
             <hr color='black' />

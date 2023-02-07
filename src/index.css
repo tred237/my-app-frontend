@@ -31,6 +31,10 @@ ul {
   padding: 18% 25% 20% 20%;
 }
 
+.top-page-title {
+  padding-top: 2%;
+}
+
 #client-list {
   margin-left: 185px;
   margin-right: 185px;
