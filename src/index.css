@@ -1,6 +1,5 @@
-html, body {
+html{
   background-color: #008B8B;
-  color: white;
   font-family: 'Monaco';
 }
 
@@ -10,12 +9,7 @@ html, body {
   margin-right: 10%;
   background-color: greenyellow;
   color: black;
-  height: 100%;
-}
-
-header {
-  text-align: center;
-  padding-top: 1%;
+  min-height: 80vh;
 }
 
 button {
@@ -29,6 +23,12 @@ ul {
   list-style: none;
   padding-left:0;
   margin-left: 5px;
+}
+
+#home-title {
+  text-align: center;
+  position: relative;
+  padding: 18% 25% 20% 20%;
 }
 
 #client-list {
@@ -104,7 +104,7 @@ ul {
   min-height: 100px;
   margin-left: 16px;
   margin-right: 16px;
-  margin-top: 16px;
+  margin-top: 5px;
   margin-bottom: 16px;
 }
 

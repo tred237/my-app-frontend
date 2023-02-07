@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import ClientList from './ClientList'
+import Home from './Home'
 import RoutineList from './RoutineList'
 
 function App() {
@@ -46,11 +47,11 @@ function App() {
 
   return (
     <div id="inner-body">
-      <header>
-        <h1>Training Catalog</h1>
-      </header>
       <Switch>
         <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/clients">
           <ClientList clients={clients} 
                       onClientDelete={handleClientDeleteClick} 
                       onNewClientSubmit={handleNewClientSubmit} 
