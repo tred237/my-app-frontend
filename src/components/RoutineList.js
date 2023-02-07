@@ -70,10 +70,12 @@ function RoutineList({ clients, setClients, toCamelCase, inputFieldGenerator }){
     }
 
     return(
-        <React.Fragment>
+        <div id="routines-page">
             <button onClick={() => history.push("/")}>Go Home</button>
             <h2>{`${client.name} - ${clientId}`}</h2>
+            <hr color='black' />
             <RoutineSummaryStats summaryStats={summaryStats} />
+            <hr color='black' />
             {showForm ? <NewRoutineForm clientId={clientId}
                                         numberFields={numberFields}
                                         onRoutineCreate={handleRoutineCreate} 
@@ -81,8 +83,8 @@ function RoutineList({ clients, setClients, toCamelCase, inputFieldGenerator }){
                                         toCamelCase={toCamelCase}
                                         inputFieldGenerator={inputFieldGenerator} /> 
                       : <button onClick={() => setShowForm(!showForm)}>Add Routine</button>}
-            <ul>
             <p>Routines Per Week:</p>
+            <div id="routines-grid">
             {routines.map(e => <Routine key={e.id} 
                                         routine={e}
                                         clientId={clientId}
@@ -91,8 +93,8 @@ function RoutineList({ clients, setClients, toCamelCase, inputFieldGenerator }){
                                         onRoutineUpdate={handleRoutineUpdate} 
                                         toCamelCase={toCamelCase}
                                         inputFieldGenerator={inputFieldGenerator} />)}
-            </ul>
-        </React.Fragment>
+            </div>
+        </div>
     )
 }
 

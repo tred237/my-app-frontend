@@ -11,7 +11,7 @@ function Routine({ routine, clientId, numberFields, onRoutineDelete, onRoutineUp
     }
 
     return(
-        <div className="routine">
+        <div className="routines-grid-item">
             {edit ? <RoutineEdit routine={routine} 
                                  clientId={clientId}
                                  numberFields={numberFields}

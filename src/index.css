@@ -25,6 +25,12 @@ button {
   height: fit-content;
 }
 
+ul {
+  list-style: none;
+  padding-left:0;
+  margin-left: 5px;
+}
+
 #client-list {
   margin-left: 185px;
   margin-right: 185px;
@@ -33,6 +39,7 @@ button {
 #client-grid {
   margin-left: 10%;
   margin-right: 10%;
+  margin-top: 8px;
   display: grid;
   grid-template-columns: 215px 215px 215px 215px;
   justify-content: center;
@@ -46,8 +53,7 @@ button {
   justify-content: center;
   text-align: center;
   min-height: 215px;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin: 16px;
   grid-template-rows: 150px 25px 25px;
 }
 
@@ -57,7 +63,15 @@ button {
   padding-bottom: 3px;
 }
 
-.client-set-button {
+#client-edit-form {
+  width: 100px;
+}
+
+.client-edit-input {
+  width:100px
+}
+
+.client-button {
   height: 24px;
   width: 100px;
 }
@@ -71,3 +85,37 @@ button {
   display: grid;
   grid-template-columns: 322px 101px;
 }
+
+#routines-page {
+  margin-left: 185px;
+  margin-right: 185px;
+}
+
+#routines-grid {
+  display: grid;
+  margin-top: 3%;
+  grid-template-columns: 350px 350px;
+  justify-content: center;
+}
+
+.routines-grid-item {
+  display: grid;
+  border: solid;
+  min-height: 100px;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.routines-set {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.routines-edit {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+

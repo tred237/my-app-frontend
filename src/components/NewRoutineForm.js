@@ -50,30 +50,47 @@ function NewRoutineForm({ clientId, numberFields, onRoutineCreate, onSetShowForm
     return(
         <div>
             <form onSubmit={handleNewRoutineSubmit}>
-                <label>Day of Week:
-                    {inputFieldGenerator('day', formData.day, handleFormDataChange, true)}
-                </label>
-                <label>Exercise:
-                    {inputFieldGenerator('exercise', formData.exercise, handleFormDataChange, true)}
-                </label>
-                <label>Exercise Type:
-                    {inputFieldGenerator('exercise_type', formData.exercise_type, handleFormDataChange, true)}
-                </label>
-                <label>Sets:
-                    {inputFieldGenerator('sets', formData.sets, handleFormDataChange, false)}
-                </label>
-                <label>Reps:
-                    {inputFieldGenerator('reps', formData.reps, handleFormDataChange, false)}
-                </label>Distance (Miles):
-                <label>
-                    {inputFieldGenerator('distance_miles', formData.distance_miles, handleFormDataChange, false)}
-                </label>
-                <label>Length of Time (Minutes):
-                    {inputFieldGenerator('length_of_time_minutes', formData.length_of_time_minutes, handleFormDataChange, false)}
-                </label>
-                <button type="submit">Submit</button>
+                <ul>
+                    <li>
+                        <label>Day of Week:
+                            {inputFieldGenerator('day', formData.day, handleFormDataChange, true)}
+                        </label>
+                    </li>
+                    <li>
+                        <label>Exercise:
+                            {inputFieldGenerator('exercise', formData.exercise, handleFormDataChange, true)}
+                        </label>
+                    </li>
+                    <li>
+                        <label>Exercise Type:
+                            {inputFieldGenerator('exercise_type', formData.exercise_type, handleFormDataChange, true)}
+                        </label>
+                    </li>
+                    <li>
+                        <label>Sets:
+                            {inputFieldGenerator('sets', formData.sets, handleFormDataChange, false)}
+                        </label>
+                    </li>
+                    <li>
+                        <label>Reps:
+                            {inputFieldGenerator('reps', formData.reps, handleFormDataChange, false)}
+                        </label>
+                    </li>
+                    <li>
+                        <label>Distance (Miles):
+                            {inputFieldGenerator('distance_miles', formData.distance_miles, handleFormDataChange, false)}
+                        </label>
+                    </li>
+                    <li>
+                        <label>Length of Time (Minutes):
+                            {inputFieldGenerator('length_of_time_minutes', formData.length_of_time_minutes, handleFormDataChange, false)}
+                        </label>
+                    </li>
+                    <li><button type="submit">Submit</button></li>
+                </ul>
             </form>
-            <button onClick={onSetShowForm}>Cancel</button>
+            <button className="routines-edit" onClick={onSetShowForm}>Cancel</button>
+            <hr color='black' />
         </div>
     )
 }

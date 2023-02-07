@@ -36,12 +36,14 @@ function ClientEdit({ client, onSetEdit, onClientDelete, onClientNameUpdate, toC
 
     return(
         <React.Fragment>
-            <form onSubmit={handleClientEditSubmit}>
-                {inputFieldGenerator('name', clientName, (e) => setClientName(e.target.value), true )}
+        {/* <div className="client-edit"> */}
+            <form className="client-edit-input" onSubmit={handleClientEditSubmit}>
+                {inputFieldGenerator('name', clientName, (e) => setClientName(e.target.value), true, 'client-edit-input')}
                 <button type="submit">Save</button>
             </form>
-            <button onClick={onSetEdit}>Cancel</button>
-            <button onClick={handleClientDelete}>Delete</button>
+            <button className="client-button" onClick={handleClientDelete}>Delete</button>
+            <button className="client-button" onClick={onSetEdit}>Cancel</button>
+        {/* </div> */}
         </React.Fragment>
     )
 }

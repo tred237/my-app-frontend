@@ -11,7 +11,7 @@ function Client({ client, onClientDelete, onClientNameUpdate, toCamelCase, input
     } 
 
     return(
-        <p className="client-grid-item">
+        <div className="client-grid-item">
             {edit ? <ClientEdit client={client}
                                 onSetEdit={handleSetEdit} 
                                 onClientDelete={onClientDelete} 
@@ -19,7 +19,7 @@ function Client({ client, onClientDelete, onClientNameUpdate, toCamelCase, input
                                 toCamelCase={toCamelCase} 
                                 inputFieldGenerator={inputFieldGenerator} />
                   : <ClientSet client={client} onSetEdit={handleSetEdit} />}
-        </p>
+        </div>
     )
 }
 

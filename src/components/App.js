@@ -40,8 +40,8 @@ function App() {
     return formattedData
   }
 
-  function inputFieldGenerator(name, valueField, cb, required){
-    return <input type="text" name={name} value={valueField} onChange={cb} required={required ? true : false} />
+  function inputFieldGenerator(name, valueField, cb, required, className = null){
+    return <input className={className} type="text" name={name} value={valueField} onChange={cb} required={required ? true : false} />
   }
 
   return (

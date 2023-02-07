@@ -68,8 +68,8 @@ function RoutineEdit({ routine, clientId, numberFields, onSetEdit, onRoutineDele
                              onRoutineEditSubmit={handleRoutineEditSubmit}
                              onRoutineChange={handleRoutineChange} 
                              inputFieldGenerator={inputFieldGenerator} />
-            <button onClick={onSetEdit}>Cancel</button>
-            <button onClick={handleRoutineDelete}>Delete</button>
+            <button className="routines-edit" onClick={handleRoutineDelete}>Delete</button>
+            <button className="routines-edit" onClick={onSetEdit}>Cancel</button>
         </React.Fragment>
     )
 }
