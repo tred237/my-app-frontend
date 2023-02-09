@@ -71,6 +71,8 @@ npm start
 
 9. If you want to edit or delete an existing routine, click the "Edit" button on a routine's card and you will be presented with the ability to edit or delete the routine.
 
+<img width="252" alt="image" src="https://user-images.githubusercontent.com/103388556/217719571-5769f944-28be-45fc-a086-1f70e352b468.png">
+
 <img width="266" alt="image" src="https://user-images.githubusercontent.com/103388556/217717120-007f591c-4067-4d48-858c-08e78ba65c77.png">
 
 10. If you want to go back to your clients catalog, click on the "View Clients" button
